@@ -2,14 +2,22 @@ import React, { Component } from "react";
 import factory from "../ethereum/factory";
 
 class CampaignIndex extends Component {
-    async componentDidMount() {
-        const campaign = await factory.methods.getDeployedCampaigns().call();
+    // run on next server before initialize comp instance
+    // implemented by nextjs
+    static async getInitialProps() {
+        const campaigns = await factory.methods.getDeployedCampaigns().call();
+        
+        // return as props for comp
+        return { campaigns }
+    }
 
-        console.log(campaign);
+    // not run on SSR
+    async componentDidMount() {
+
     }
 
     render() {
-        return <div>Campaigns Index!</div>
+        return <div>{this.props.campaigns[0]}</div>
     }
 }
 
