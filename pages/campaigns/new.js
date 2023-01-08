@@ -3,6 +3,7 @@ import { Form, Button, Input, Message } from "semantic-ui-react";
 import Layout from "../../components/Layout";
 import factory from "../../ethereum/factory";
 import  web3 from "../../ethereum/web3";
+import { Router } from '../../routes';
 
 class CampaignNew extends Component {
     state = {
@@ -26,8 +27,8 @@ class CampaignNew extends Component {
                         // no need specify gas amount, metamask will take care of this
                         
                     })
-                    this.setState({ loading: false })
-
+                    this.setState({ loading: false });
+                    Router.pushRoute('/');
                 
                 } catch (err) {
                     this.setState({errorMessage: err.message, loading: false});
