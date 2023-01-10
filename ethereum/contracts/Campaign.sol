@@ -1,4 +1,5 @@
 pragma solidity ^0.8.9;
+
 contract CampaignFactory {
     address[] public deployedCampaigns;
 
@@ -14,13 +15,13 @@ contract CampaignFactory {
 
 contract Campaign {
     struct Request {
-            string description;
-            uint value;
-            address payable recipient;
-            uint approvalCount;
-            mapping(address => bool) approvals;
-            bool complete;
-        }
+        string description;
+        uint value;
+        address payable recipient;
+        uint approvalCount;
+        mapping(address => bool) approvals;
+        bool complete;
+    }
 
     address public manager;
     uint public minimumContribution;
@@ -45,8 +46,11 @@ contract Campaign {
         approversCount++;
     }
 
-    function createRequest(string memory description, uint value, address payable recipient) public restricted {
-
+    function createRequest(
+        string memory description,
+        uint value,
+        address payable recipient
+    ) public restricted {
         Request storage newRequest = requests.push();
         newRequest.description = description;
         newRequest.value = value;
@@ -75,9 +79,11 @@ contract Campaign {
         request.complete = true;
     }
 
-    function getSummary() public view returns (
-        uint, uint, uint, uint, address
-        ) {
+    function getSummary()
+        public
+        view
+        returns (uint, uint, uint, uint, address)
+    {
         return (
             minimumContribution,
             address(this).balance,

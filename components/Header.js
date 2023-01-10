@@ -1,18 +1,27 @@
 import React from "react";
 import { Menu } from "semantic-ui-react";
-import styles from './Header.module.css'
-
+import styles from './Header.module.css';
+import { Link } from "../routes";
 const Header = () => {
     return (
         <Menu pointing className={styles.menu}>
-            <Menu.Item
-                name="Crowd Coin"
-             />
-
+            <Link route="/">
+                <a className="item">
+                    Crowd Coin
+                </a>
+            </Link>
             <Menu.Menu position="right">
-                <Menu.Item>Campaigns</Menu.Item>
+                <Link route="/">
+                    <a className="item">
+                        Campaigns
+                    </a>
+                </Link>
 
-                <Menu.Item>+</Menu.Item>
+                <Link route="/campaigns/new">
+                    <a className="item">
+                        +
+                    </a>
+                </Link>
             </Menu.Menu>
         </Menu>
     )
